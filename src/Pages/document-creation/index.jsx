@@ -14,6 +14,18 @@ import { generateRapportSpecialWord } from '../../utils/wordGenerator';
 import { generateRapportSpecialPDF } from '../../utils/pdfGenerator';
 import { validateRapportSpecial } from '../../utils/documentValidation';
 
+import { createPortal } from 'react-dom';
+
+const PrintPortal = ({ children }) => {
+  const mountNode = document.body;
+  return createPortal(
+    <div id="print-mount" className="hidden print:block">
+      {children}
+    </div>,
+    mountNode
+  );
+};
+
 const DocumentCreation = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('editor');
@@ -463,6 +475,20 @@ const DocumentCreation = () => {
           </div>
         </div>
       </div>
+
+      {/* Hidden Print Portal */}
+      <PrintPortal>
+        <div className="print-only-container">
+          <DocumentPreview
+            formData={getCurrentFormData()}
+            clientData={getSelectedClientData()}
+            firmData={{ ...getFirmData(), logoSize }}
+            documentType={documentType}
+            previewMode={false}
+            resizeMode={false}
+          />
+        </div>
+      </PrintPortal>
     </div>
   );
 };

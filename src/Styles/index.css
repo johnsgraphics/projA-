@@ -1,0 +1,186 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter;
+}
+
+* {
+  box-sizing: border-box;
+  line-height: normal;
+  font-family: inherit;
+  margin: unset;
+}
+
+/* Print rules: force A4 sizing, isolate the document area, and allow pagination */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    width: 210mm;
+    height: auto;
+  }
+  
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide everything except print-area */
+  * {
+    visibility: hidden !important;
+  }
+  
+  .print-area,
+  .print-area * {
+    visibility: visible !important;
+  }
+  
+  /* Position print-area as root element */
+  .print-area {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 210mm !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    transform: none !important;
+    scale: 1 !important;
+    box-shadow: none !important;
+    background: white !important;
+  }
+
+  /* Reset any transforms on ALL elements */
+  * {
+    transform: none !important;
+    scale: 1 !important;
+  }
+  
+  /* Content flows naturally */
+  .page-header {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .document-content {
+    page-break-before: auto;
+    break-before: auto;
+  }
+
+  /* Tables pagination */
+  table {
+    page-break-inside: auto;
+    break-inside: auto;
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+  
+  thead {
+    display: table-header-group !important;
+  }
+  
+  tfoot {
+    display: table-footer-group !important;
+  }
+  
+  tbody {
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+  
+  tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  td, th {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Avoid orphaned headers */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Ensure all images and SVGs print correctly */
+  img,
+  svg {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    max-width: 100% !important;
+  }
+
+  /* Force visibility for all print-area content */
+  .print-area,
+  .print-area *,
+  .print-area img,
+  .print-area svg,
+  .print-area .page-header,
+  .print-area .page-header *,
+  .print-area .page-header img {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Keep appropriate display types */
+  .print-area div,
+  .print-area section,
+  .print-area header,
+  .print-area main,
+  .print-area table {
+    display: block !important;
+  }
+  
+  .print-area table {
+    display: table !important;
+  }
+  
+  .print-area thead {
+    display: table-header-group !important;
+  }
+  
+  .print-area tbody {
+    display: table-row-group !important;
+  }
+  
+  .print-area tr {
+    display: table-row !important;
+  }
+  
+  .print-area td,
+  .print-area th {
+    display: table-cell !important;
+  }
+  
+  .print-area span,
+  .print-area a,
+  .print-area strong,
+  .print-area em {
+    display: inline !important;
+  }
+  
+  .print-area img {
+    display: block !important;
+  }
+
+  /* Remove decorative styles */
+  .shadow-lg,
+  .shadow {
+    box-shadow: none !important;
+  }
+}

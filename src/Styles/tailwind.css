@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: #FAFAFA;
+    --color-foreground: #1F2937;
+    --color-card: #FFFFFF;
+    --color-card-foreground: #1F2937;
+    --color-popover: #FFFFFF;
+    --color-popover-foreground: #1F2937;
+    --color-muted: #F3F4F6;
+    --color-muted-foreground: #6B7280;
+    --color-primary: #2DD4BF;
+    --color-primary-foreground: #FFFFFF;
+    --color-secondary: #0F766E;
+    --color-secondary-foreground: #FFFFFF;
+    --color-accent: #F59E0B;
+    --color-accent-foreground: #FFFFFF;
+    --color-success: #10B981;
+    --color-success-foreground: #FFFFFF;
+    --color-warning: #F59E0B;
+    --color-warning-foreground: #FFFFFF;
+    --color-error: #EF4444;
+    --color-error-foreground: #FFFFFF;
+    --color-destructive: #EF4444;
+    --color-destructive-foreground: #FFFFFF;
+    --color-border: #E5E7EB;
+    --color-input: #FFFFFF;
+    --color-ring: #2DD4BF;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .sidebar-transition {
+    transition: all 200ms ease-out;
+  }
+
+  .nav-item-hover {
+    transition: all 150ms ease-out;
+  }
+
+  .slide-transition {
+    transition: transform 300ms ease-out;
+  }
+
+  .backdrop-blur-custom {
+    backdrop-filter: blur(4px);
+  }
+}
+
+@layer utilities {
+  .a4-width {
+    width: 210mm;
+  }
+
+  .a4-height {
+    min-height: 297mm;
+  }
+}
+
+/* قواعد الطباعة */
+@media print {
+  @page {
+    size: A4;
+    margin: 8mm;
+  }
+
+  * {
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* إخفاء كل UI */
+  .no-print,
+  header,
+  nav,
+  aside,
+  button,
+  [class*="sidebar"],
+  [class*="Sidebar"],
+  [class*="header"],
+  [class*="Header"],
+  [class*="Navigation"],
+  [role="navigation"],
+  [role="banner"] {
+    display: none !important;
+  }
+
+  /* إظهار الوثيقة */
+  .print-document {
+    display: block !important;
+    visibility: visible !important;
+    width: 100% !important;
+    max-width: 210mm !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+    transform: none !important;
+    scale: 1 !important;
+    page-break-after: auto !important;
+  }
+
+  .print-document * {
+    visibility: visible !important;
+  }
+
+  /* السماح بانقسام الصفحات تلقائيًا */
+  .print-document table {
+    page-break-inside: auto !important;
+  }
+
+  .print-document tr {
+    page-break-inside: avoid !important;
+    page-break-after: auto !important;
+  }
+
+  .print-document thead {
+    display: table-header-group !important;
+  }
+
+  .print-document tbody {
+    page-break-inside: auto !important;
+  }
+}
